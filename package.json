@@ -1,0 +1,17 @@
+{
+  "name": "qa-automation-challenge",
+  "version": "1.0.0",
+  "description": "QA specialist automation challenge",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "Ben Marrett",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.10.1"
+  }
+}
