@@ -1,5 +1,9 @@
 import { test, expect } from '@playwright/test';
 
+// Small selector constants to keep test easy to update
+const BLOG_CONTAINER = '#_dynamic_list-199-247';
+const TITLE_SEL = 'h2.ct-headline';
+
 test('should navigate to blog from homepage', async ({ page }) => {
 	// 1. Navigate to homepage
 	await page.goto('https://skillsvr.com/');
@@ -41,10 +45,10 @@ test('should navigate to blog from homepage', async ({ page }) => {
 	await expect(blogHeader).toBeVisible();
 
 	// Verify blog posts loaded
-	const blogContainer = coursePage.locator('#_dynamic_list-199-247');
+	const blogContainer = coursePage.locator(BLOG_CONTAINER);
 	await expect(blogContainer).toBeVisible();
 
-	const blogTitles = blogContainer.locator('h2.ct-headline');
+	const blogTitles = blogContainer.locator(TITLE_SEL);
 	const titles = await blogTitles.allTextContents();
 	const blogPosts = blogContainer.locator('[data-id="div_block-202-247"]');
 
