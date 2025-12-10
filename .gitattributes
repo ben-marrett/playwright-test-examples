@@ -1,0 +1,3 @@
+reports/* linguist-vendored
+reports/playwright-report/* linguist-vendored
+reports/test-results/* linguist-vendored
