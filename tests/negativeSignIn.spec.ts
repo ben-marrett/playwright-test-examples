@@ -1,5 +1,8 @@
 import { test, expect, Page } from '@playwright/test';
 
+// Configurable base URL for privacy
+const BASE_URL = process.env.TEST_BASE_URL || 'https://example.com/';
+
 // Selector constants for login form
 const EMAIL_SEL = '[placeholder="Email Address"], input[name="email"]';
 const PASSWORD_SEL = '[placeholder="Password"], input[name="password"]';
@@ -12,7 +15,7 @@ test('should handle negative sign-in scenarios correctly', async ({ page }) => {
     let loginPage: Page;
 
     await test.step('Navigate and open sign-in popup', async () => {
-        await page.goto('https://skillsvr.com/');
+    await page.goto(BASE_URL);
 
         const acceptButton = page.getByRole('button', { name: 'Accept & Close' });
         if (await acceptButton.isVisible({ timeout: 3000 }).catch(() => false)) {

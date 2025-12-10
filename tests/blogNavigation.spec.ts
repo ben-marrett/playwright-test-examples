@@ -1,12 +1,15 @@
 import { test, expect, Page } from '@playwright/test';
 
+// Configurable base URL for privacy
+const BASE_URL = process.env.TEST_BASE_URL || 'https://example.com/';
+
 // Small selector constants to keep test easy to update
 const BLOG_CONTAINER = '#_dynamic_list-199-247';
 const TITLE_SEL = 'h2.ct-headline';
 
 test('should navigate to blog from homepage', async ({ page }) => {
 	await test.step('Navigate to homepage and handle cookie banner', async () => {
-		await page.goto('https://skillsvr.com/');
+	await page.goto(BASE_URL);
 
 		const acceptButton = page.getByRole('button', { name: 'Accept & Close' });
 		if (await acceptButton.isVisible({ timeout: 3000 }).catch(() => false)) {

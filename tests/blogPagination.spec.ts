@@ -1,5 +1,8 @@
 import { test, expect, Page } from '@playwright/test';
 
+// Configurable base URL for privacy
+const BASE_URL = process.env.TEST_BASE_URL || 'https://example.com/';
+
 // Selectors and regex constants
 const BLOG_CONTAINER = '#_dynamic_list-199-247';
 const TITLE_SEL = 'h2.ct-headline';
@@ -18,6 +21,7 @@ async function captureBlogData(page: Page, pageNum: number) {
     // Get dates
     const blogDates = blogContainer.locator(DATE_SPAN);
     const datesRaw = await blogDates.allTextContents();
+    console.log(datesRaw)
     // extract just the date substring when present (e.g. "Oct 30, 2025")
     const dates = datesRaw.map(d => {
         const m = d.match(DATE_RE);
@@ -47,8 +51,8 @@ function isNewerOrEqual(dateStr1: string, dateStr2: string): boolean {
 
 test('pagination updates blog posts and dates across pages', async ({ page }) => {
     await test.step('Navigate to blog and handle cookie banner', async () => {
-        await page.goto('https://skillsvr.com/blog');
-        await expect(page).toHaveURL(/\/blog$/);
+    await page.goto(`${BASE_URL}blog`);
+    await expect(page).toHaveURL(/\/blog$/);
 
         const acceptButton = page.getByRole('button', { name: 'Accept & Close' });
         if (await acceptButton.isVisible({ timeout: 3000 }).catch(() => false)) {
@@ -75,41 +79,41 @@ test('pagination updates blog posts and dates across pages', async ({ page }) =>
         await page.getByRole('link', { name: '❯' }).click();
         await expect(page).toHaveURL(/\/blog\/page\/2/);
         page2Data = await captureBlogData(page, 2);
-    expect(page1Data!.firstTitle).not.toBe(page2Data!.firstTitle);
-    expect(page2Data!.titles.length).toBeGreaterThan(0);
-    expect(isNewerOrEqual(page1Data!.firstDate || '', page2Data!.firstDate || '')).toBe(true);
+        expect(page1Data!.firstTitle).not.toBe(page2Data!.firstTitle);
+        expect(page2Data!.titles.length).toBeGreaterThan(0);
+        expect(isNewerOrEqual(page1Data!.firstDate || '', page2Data!.firstDate || '')).toBe(true);
     });
 
     await test.step('Navigate to Page 3 and verify', async () => {
         await page.getByRole('link', { name: '3' }).click();
         await expect(page).toHaveURL(/\/blog\/page\/3/);
         page3Data = await captureBlogData(page, 3);
-    expect(page2Data!.firstTitle).not.toBe(page3Data!.firstTitle);
-    expect(page3Data!.titles.length).toBeGreaterThan(0);
-    expect(isNewerOrEqual(page2Data!.firstDate || '', page3Data!.firstDate || '')).toBe(true);
+        expect(page2Data!.firstTitle).not.toBe(page3Data!.firstTitle);
+        expect(page3Data!.titles.length).toBeGreaterThan(0);
+        expect(isNewerOrEqual(page2Data!.firstDate || '', page3Data!.firstDate || '')).toBe(true);
     });
 
     await test.step('Navigate to Page 11 and verify', async () => {
         await page.getByRole('link', { name: '11' }).click();
         await expect(page).toHaveURL(/\/blog\/page\/11/);
         page11Data = await captureBlogData(page, 11);
-    expect(isNewerOrEqual(page3Data!.firstDate || '', page11Data!.firstDate || '')).toBe(true);
+        expect(isNewerOrEqual(page3Data!.firstDate || '', page11Data!.firstDate || '')).toBe(true);
     });
 
     await test.step('Navigate back to Page 10 and verify', async () => {
         await page.getByRole('link', { name: '❮' }).click();
         await expect(page).toHaveURL(/\/blog\/page\/10/);
         page10Data = await captureBlogData(page, 10);
-    expect(page10Data!.firstTitle).not.toBe(page11Data!.firstTitle);
-    expect(isNewerOrEqual(page10Data!.firstDate || '', page11Data!.firstDate || '')).toBe(true);
+        expect(page10Data!.firstTitle).not.toBe(page11Data!.firstTitle);
+        expect(isNewerOrEqual(page10Data!.firstDate || '', page11Data!.firstDate || '')).toBe(true);
     });
 
     await test.step('Navigate forward to Page 11 and verify', async () => {
         await page.getByRole('link', { name: '❯' }).click();
         await expect(page).toHaveURL(/\/blog\/page\/11/);
         page11DataAgain = await captureBlogData(page, 11);
-    expect(page11Data!.firstTitle).toBe(page11DataAgain!.firstTitle);
-    expect(page11Data!.firstDate).toBe(page11DataAgain!.firstDate);
+        expect(page11Data!.firstTitle).toBe(page11DataAgain!.firstTitle);
+        expect(page11Data!.firstDate).toBe(page11DataAgain!.firstDate);
     });
 
     await test.step('Add summary annotation', async () => {
