@@ -48,8 +48,8 @@ See [scenarios.md](scenarios.md) for full details:
 
 1. **Clone and navigate to the project:**
 ```bash
-git clone https://github.com/ben-marrett/playwright-test-examples.git
-cd qa-automation-challenge
+   git clone https://github.com/ben-marrett/playwright-test-examples.git
+   cd qa-automation-challenge
 ```
 
 2. **Install dependencies:**
@@ -68,38 +68,38 @@ cd qa-automation-challenge
 
 ### Run all tests
 ```bash
-npx playwright test
+   npx playwright test
 ```
 
 ### Run a specific test
 ```bash
-npx playwright test tests/blogNavigation.spec.ts
-npx playwright test tests/blogPagination.spec.ts
-npx playwright test tests/negativeSignIn.spec.ts
+   npx playwright test tests/blogNavigation.spec.ts
+   npx playwright test tests/blogPagination.spec.ts
+   npx playwright test tests/negativeSignIn.spec.ts
 ```
 
 ### Browser-specific execution
 ```bash
-npx playwright test --project=chromium
-npx playwright test --project=firefox
-npx playwright test --project=webkit
+   npx playwright test --project=chromium
+   npx playwright test --project=firefox
+   npx playwright test --project=webkit
 ```
 
 ### Development / Debugging
 
 Run in headed mode (watch browser):
 ```bash
-npx playwright test --headed
+   npx playwright test --headed
 ```
 
 Debug mode (step through):
 ```bash
-npx playwright test --debug
+   npx playwright test --debug
 ```
 
 Interactive UI mode:
 ```bash
-npx playwright test --ui
+   npx playwright test --ui
 ```
 
 ---
@@ -110,7 +110,7 @@ npx playwright test --ui
 ### Viewing Reports
 After running tests, view the HTML report:
 ```bash
-npx playwright show-report reports/playwright-report
+   npx playwright show-report reports/playwright-report
 ```
 
 ### What's Included
