@@ -11,12 +11,12 @@ test('should navigate to blog from homepage', async ({ page }) => {
 	await test.step('Navigate to homepage and handle cookie banner', async () => {
 	await page.goto(BASE_URL);
 
-		const acceptButton = page.getByRole('button', { name: 'Accept & Close' });
-		if (await acceptButton.isVisible({ timeout: 3000 }).catch(() => false)) {
-			await acceptButton.click();
-		}
+	const acceptButton = page.getByRole('button', { name: 'Accept & Close' });
+	if (await acceptButton.isVisible({ timeout: 3000 }).catch(() => false)) {
+		await acceptButton.click();
+	}
 
-		await expect(page).toHaveTitle(/SkillsVR/);
+	await expect(page).toHaveTitle(/Sample App|Homepage|Welcome/);
 	});
 
 	let coursePage: Page;

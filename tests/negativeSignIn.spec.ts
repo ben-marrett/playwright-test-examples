@@ -30,7 +30,7 @@ test('should handle negative sign-in scenarios correctly', async ({ page }) => {
         await loginPage.waitForLoadState('networkidle');
 
         // Handle region selection screen
-        const regionHeader = loginPage.getByText('Log in to SkillsVR Enterprise');
+    const regionHeader = loginPage.getByText(/Log in to (.+)/);
         if (await regionHeader.isVisible({ timeout: 3000 }).catch(() => false)) {
             // Click the action button to proceed (region already selected)
             await loginPage.locator('[data-test-id="ActionBtn"]').click();

@@ -1,9 +1,10 @@
-# QA Automation Challenge – Test Scenarios
+
+# Playwright Automation Challenge – Test Scenarios
 
 ## Scenario 1 – Blog Navigation
-1. From the homepage, click **“VR Training”** (or https://skillsvr.com/marketplace).
+1. From the homepage, click **“VR Training”** (or the marketplace page).
 2. Open any **Training Course**.
-3. Navigate to the **Blog** page under Resources.
+3. Navigate to the **Blog** page under Resources (or equivalent menu).
 4. Verify that the blog listing page loads correctly (titles, images, or summaries appear).
 
 ## Scenario 2 – Blog Pagination
@@ -15,7 +16,7 @@
 2. Attempt to sign in with:
    - Empty email and password
    - Invalid email format (e.g., user@wrong)
-   - Random valid-looking email (e.g., test@gmail.com) with password
+   - Random valid-looking email (e.g., user@example.com) with password
 3. Verify that:
    - The page remains on the login screen
    - Proper error messages are shown
