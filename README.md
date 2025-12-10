@@ -1,23 +1,27 @@
-# qa-automation-challenge
-QA specialist automation challenge
+
+# Playwright TypeScript Test Suite – Example Project
+QA automation challenge for a generic web application
 
 ## Objective
-Automate key workflows on the SkillsVR Website (https://skillsvr.com/) to demonstrate ability to:
+Automate key workflows on a sample website to demonstrate ability to:
 * Write maintainable automated tests
 * Handle dynamic UI elements
 * Validate error and success flows
 * Produce clear test reports
+
+**Note:** To run these tests, you’ll need access to a compatible test site. If you’d like to try the suite, please contact me for a suitable test URL.
 
 ## Tools & Language
 * **Framework:** Playwright
 * **Language:** TypeScript
 * **Browsers:** Chromium, Firefox, WebKit
 
+
 ## Scenarios Automated
 See [scenarios.md](scenarios.md) for full details:
 
 ### 1. Blog Navigation
-- Navigates from homepage → VR Training → Training Course → Blog
+- Navigates from homepage to blog listing via menu links
 - Verifies blog posts load correctly with titles and dates
 - Handles popup windows and dynamic menus
 
@@ -28,7 +32,7 @@ See [scenarios.md](scenarios.md) for full details:
 
 ### 3. Negative Sign-In
 - Empty form submission validation
-- Invalid email format error handling  
+- Invalid email format error handling
 - Invalid credentials error messaging
 - Verifies no redirect on failed login
 
@@ -37,14 +41,15 @@ See [scenarios.md](scenarios.md) for full details:
 ## Setup Instructions
 
 ### Prerequisites
+
 - Node.js (v18+ recommended)
 
 ### Installation
 
 1. **Clone and navigate to the project:**
 ```bash
-   git clone 
-   cd qa-automation-challenge
+git clone https://github.com/ben-marrett/playwright-test-examples.git
+cd qa-automation-challenge
 ```
 
 2. **Install dependencies:**
@@ -57,6 +62,7 @@ See [scenarios.md](scenarios.md) for full details:
    npx playwright install
 ```
 ---
+
 
 ## Running Tests
 
@@ -98,6 +104,7 @@ npx playwright test --ui
 
 ---
 
+
 ## Test Reports
 
 ### Viewing Reports
@@ -117,6 +124,7 @@ npx playwright show-report reports/playwright-report
 - **Screenshots:** `reports/test-results/`
 
 ---
+
 
 ## Project Structure
 ```
@@ -138,6 +146,7 @@ qa-automation-challenge/
 
 ## Implementation Details
 
+
 - TypeScript for type safety
 - Cross-browser testing (Chromium, Firefox, WebKit)
 - Test steps for structured reporting
@@ -148,12 +157,14 @@ qa-automation-challenge/
 
 ## Notes
 
+
 - **No credentials required:** Negative sign-in tests validate error handling only
 - **Cross-browser compatible:** All tests verified on Chromium, Firefox, and WebKit
 - **Test isolation:** Each test runs independently for reliability
 - **All dependencies:** Listed in `package.json` and installed via `npm install`
 
 ---
+
 
 ## Author
 
