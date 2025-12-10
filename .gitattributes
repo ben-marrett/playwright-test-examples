@@ -1,3 +1,6 @@
 reports/* linguist-vendored
 reports/playwright-report/* linguist-vendored
 reports/test-results/* linguist-vendored
+*.html linguist-generated
+*.json linguist-generated
+*.xml linguist-generated
