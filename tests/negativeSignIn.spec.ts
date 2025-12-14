@@ -15,7 +15,7 @@ test('should handle negative sign-in scenarios correctly', async ({ page }) => {
     let loginPage: Page;
 
     await test.step('Navigate and open sign-in popup', async () => {
-    await page.goto(BASE_URL);
+        await page.goto(BASE_URL);
 
         const acceptButton = page.getByRole('button', { name: 'Accept & Close' });
         if (await acceptButton.isVisible({ timeout: 3000 }).catch(() => false)) {
@@ -30,7 +30,7 @@ test('should handle negative sign-in scenarios correctly', async ({ page }) => {
         await loginPage.waitForLoadState('networkidle');
 
         // Handle region selection screen
-    const regionHeader = loginPage.getByText(/Log in to (.+)/);
+        const regionHeader = loginPage.getByText(/Log in to (.+)/);
         if (await regionHeader.isVisible({ timeout: 3000 }).catch(() => false)) {
             // Click the action button to proceed (region already selected)
             await loginPage.locator('[data-test-id="ActionBtn"]').click();
